@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Item</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<style>
+  *{
+    font-family: Arial, "Helvetica Neue", Helvetica;
+    font-style: italic;
+  }
+  .empty-subtitle{
+    width: 700px;
+  }
+  .text-uppercase{
+    text-transform: uppercase;
+  }
+</style>
+  </head>
+  <body>
+   <form id="add-form">
+      <div class="form-group" style="padding: 15px">
+  <label class="form-label text-uppercase" for="input-example-1"><small><strong>Item Title</strong></small></label>
+  <input class="form-input" type="text" id="item" placeholder="Item Title">
+  <button class="btn btn-primary text-uppercase" type="submit" style="width: 100%; margin-top: 10px"><small><strong>Add Item</strong></small></button>
+</div>
+   </form>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+    <script>
+        const electron = require('electron');
+          const remote = require('electron').remote;
+        const {ipcRenderer} = electron;
+      document.getElementById('add-form').addEventListener('submit', submitForm);
+      function submitForm(e){
+        e.preventDefault();
+        const item = document.querySelector('#item').value;
+        // console.log(item);
+        // console.log(ipcRenderer);
+        ipcRenderer.send('item:add', item);
+        var window = remote.getCurrentWindow();
+       window.close();
+      }
+    </script>
+  </body>
+</html>
