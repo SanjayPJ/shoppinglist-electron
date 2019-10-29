@@ -1,4 +1,6 @@
-# electron-quick-start
+# shoppinglist-electron
+
+![screen1](screenshot.png)
 
 **Clone and run for a quick way to see Electron in action.**
 
